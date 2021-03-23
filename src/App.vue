@@ -1,32 +1,78 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+      <div class="header">
+        <img src="./assets/bg_cropped.jpg" alt="">
+      </div>
+
+      <!-- <v-spacer></v-spacer> -->
+        <!-- <span class="mr-2">관리자</span>
+        <v-icon>mdi-open-in-new</v-icon> -->
+
+    <v-main>
+      <v-row justify="center">
+
+        <v-btn value="left"
+          v-for="(item, i) in items" :key="i" @click="navigateTo(item)" 
+          width="20%"
+          height="70px"
+          >
+          <h2 v-text="item.text">
+          </h2>
+        </v-btn>
+      </v-row>
+      
+     
+      
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.header{
+  overflow: hidden;
+  width: 100%;
+  height: auto;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  img {
+    width:100%;
+    vertical-align: top;
   }
 }
+
+.row {
+  margin: 0 !important;
+}
+
 </style>
+
+<script>
+
+export default {
+  name: 'App', 
+
+  data: () => ({
+    drawer: false, // drawer의 기본 값
+      selectedItem: 0,
+     items: [
+
+        { text: '유기동물', icon: 'mdi-home', path: '/' },
+        { text: '분실/보호동물', icon: 'mdi-contacts', path: '/LostAndFoundAnimal' },
+        { text: '입양후기', icon: 'mdi-forum', path: '/ReviewMain' },
+        { text: '관리자', icon: 'mdi-format-list-checks', path: '/manager' },
+  
+
+      ],
+      
+  }),
+
+  methods:{
+
+    navigateTo(item) {
+          this.$router.push(item.path);
+     },
+  }
+};
+</script>
