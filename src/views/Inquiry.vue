@@ -2,28 +2,10 @@
   <v-container grid-list-xl>
     <MenuItem />
     <v-col sm="5">
-      <h3>신청번호</h3>
-      <v-spacer/>
-      <v-text-field
-        v-model="message4"
-        label="신청번호를 입력하세요"
-        outlined
-        clearable
-      >
-      </v-text-field>
-
-      <h3>이름</h3>
-      <v-spacer/>
-      <v-text-field
-        v-model="message4"
-        label="이름을 입력하세요"
-        outlined
-        clearable
-      >
-      </v-text-field>
-      <v-btn>
-        조회
-      </v-btn>
+      <h3>휴대폰 번호</h3>
+      <v-spacer />
+      <v-text-field label="010-0000-0000" outlined clearable></v-text-field>
+      <v-btn @click="ask()"> 조회 </v-btn>
     </v-col>
   </v-container>
 </template>
@@ -36,8 +18,15 @@ export default {
   data() {
     return {};
   },
-
-  methods: {},
+  methods: {
+    ask() {
+      this.$router.push("/Page");
+    },
+    //     ask() {
+    //  if() {this.$router.push("/Page");
+    //}
+    // },
+  },
 };
 </script>
 

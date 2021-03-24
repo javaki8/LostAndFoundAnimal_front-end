@@ -2,7 +2,7 @@
   <v-container grid-list-xl>
     <v-toolbar color="cyan" dark flat height="15px">
       <template v-slot:extension>
-        <v-tabs v-model="tab" align-with-title>
+        <v-tabs align-with-title>
           <v-tab v-for="(menu, i) in menus" :key="i" @click="navigateTo(menu)">
             {{ menu.text }}
           </v-tab>
@@ -10,10 +10,10 @@
       </template>
     </v-toolbar>
 
-    <v-tabs-items v-model="tab">
-      <v-tab-item v-for="item in items" :key="item">
+    <v-tabs-items>
+      <v-tab-item>
         <v-card flat>
-          <v-card-text v-text="text"></v-card-text>
+          <v-card-text></v-card-text>
         </v-card>
       </v-tab-item>
     </v-tabs-items>

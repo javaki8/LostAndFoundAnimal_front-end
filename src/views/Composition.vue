@@ -124,7 +124,7 @@
           <small>*작성한 글은 관리자 승인 후 등록됩니다.</small>
         </v-card-text>
 
-        <v-btn color="primary" text @click="editItem(item)"> 등록 </v-btn>
+        <v-btn color="primary"> 등록 </v-btn>
 
         <v-btn color="primary" text @click="animalList()"> 취소 </v-btn>
       </v-card>
@@ -141,11 +141,6 @@ export default {
     menu2: false,
     errorMessages: "",
     name: null,
-    address: null,
-    city: null,
-    state: null,
-    country: null,
-    formHasErrors: false,
     files: [],
   }),
 
@@ -153,10 +148,6 @@ export default {
     form() {
       return {
         name: this.name,
-        address: this.address,
-        city: this.city,
-        state: this.state,
-        country: this.country,
       };
     },
   },
@@ -168,22 +159,8 @@ export default {
   },
 
   methods: {
-    resetForm() {
-      this.errorMessages = [];
-      this.formHasErrors = false;
-
-      Object.keys(this.form).forEach((f) => {
-        this.$refs[f].reset();
-      });
-    },
-
     animalList() {
       this.$router.push("/LostAndFoundAnimal");
-    },
-    editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
     },
   },
 };

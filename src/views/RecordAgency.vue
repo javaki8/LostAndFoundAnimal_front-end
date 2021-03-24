@@ -1,35 +1,39 @@
 <template>
   <v-container grid-list-xl>
-    <MenuItem/>
-      <v-chip width="40%" class="ma-2" color="primary" outlined pill>
-        반려동물등록 대행업체 조회
-      </v-chip>
+    <MenuItem />
     <v-row>
-      <div style="width: 10%">
-        <v-select
-          v-model="variant"
-          :items="addr"
-          clearable
-          label="시/도"
-        ></v-select>
-      </div>
-      <div style="width: 10%">
-        <v-select v-model="variant" :items="addrDtl" clearable label="구/군">
-        </v-select>
-      </div>
+      <v-card>
+        <v-card-title>
+          <v-chip width="40%" class="ma-2" color="primary" outlined pill>
+            반려동물등록 대행업체 조회
+          </v-chip>
+          <v-spacer></v-spacer>
+          <div>
+            <v-select :items="addr" clearable label="시/도"></v-select>
+          </div>
+          <div>
+            <v-select :items="addrDtl" clearable label="구/군"> </v-select>
+          </div>
+        </v-card-title>
+        <v-data-table
+          :headers="headers"
+          :items="desserts"
+          :search="search"
+        ></v-data-table>
+      </v-card>
     </v-row>
   </v-container>
 </template>    
-
 
 <script>
 import MenuItem from "@/components/MenuItem.vue";
 export default {
   components: {
-    MenuItem
+    MenuItem,
   },
   data() {
     return {
+      search: "",
       tab: null,
       addr: [
         "서울",
@@ -52,6 +56,45 @@ export default {
         "제주",
       ],
       addrDtl: ["Dog", "Cat", "Rabbit", "Turtle", "Snake"],
+      headers: [
+        {
+          text: "Dessert (100g serving)",
+          align: "start",
+          sortable: false,
+          value: "name",
+        },
+        { text: "Calories", value: "calories" },
+        { text: "Fat (g)", value: "fat" },
+        { text: "Carbs (g)", value: "carbs" },
+        { text: "Protein (g)", value: "protein" },
+        { text: "Iron (%)", value: "iron" },
+      ],
+      desserts: [
+        {
+          name: "Frozen Yogurt",
+          calories: 159,
+          fat: 6.0,
+          carbs: 24,
+          protein: 4.0,
+          iron: "1%",
+        },
+        {
+          name: "Ice cream sandwich",
+          calories: 237,
+          fat: 9.0,
+          carbs: 37,
+          protein: 4.3,
+          iron: "1%",
+        },
+        {
+          name: "Eclair",
+          calories: 262,
+          fat: 16.0,
+          carbs: 23,
+          protein: 6.0,
+          iron: "7%",
+        },
+      ],
     };
   },
 };
