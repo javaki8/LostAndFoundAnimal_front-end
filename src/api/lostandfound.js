@@ -21,7 +21,7 @@ export default {
         'content-type': 'multipart/form-data'
       }
     }),
+  details: (id) => axios.patch(`${process.env.VUE_APP_API_BASE}/lostandfounds/${id}`)
+  // detail http://localhost:8080/lostandfounds/{id}
 
-  // DELETE http://localhost:8080/feeds/{id}
-  //del: (id) => request.delete(`${process.env.VUE_APP_API_BASE}/feeds/${id}`)
 }

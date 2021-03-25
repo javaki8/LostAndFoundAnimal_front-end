@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     ask() {
-      this.$router.push("/Page");
+      this.$router.push("/Progress");
     },
     //     ask() {
     //  if() {this.$router.push("/Page");

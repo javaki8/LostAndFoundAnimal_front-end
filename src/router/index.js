@@ -21,35 +21,29 @@ const routes = [
   {
     path: '/Composition',
     name: 'Composition',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/Composition.vue')
   },
   {
     path: '/Inquiry',
     name: 'Inquiry',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/Inquiry.vue')
   },
   {
     path: '/RecordAgency',
     name: 'RecordAgency',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/RecordAgency.vue')
   },
   {
     path: '/Page',
     name: 'Page',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/Page.vue')
-  }
+  },
+
+  {
+    path: '/Progress',
+    name: 'Progress',
+    component: () => import('../views/Progress.vue')
+  },
 ]
 
 const router = new VueRouter({

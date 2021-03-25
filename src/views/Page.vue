@@ -11,7 +11,16 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-btn>목록</v-btn>
+      <v-btn @click="animal()">목록</v-btn>
     </v-container>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    animal() {
+      this.$router.push("/LostAndFoundAnimal");
+    },
+  },
+};
+</script>
