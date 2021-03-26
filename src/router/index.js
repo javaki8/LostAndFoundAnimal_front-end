@@ -44,6 +44,12 @@ const routes = [
     name: 'Progress',
     component: () => import('../views/Progress.vue')
   },
+
+  {
+    path: '/Detail',
+    name: 'Detail',
+    component: () => import('../views/Detail.vue')
+  },
 ]
 
 const router = new VueRouter({

@@ -16,7 +16,7 @@ export default {
     // POST http://localhost:8080/lostandfounds/{id}/animal-files"
     // BODY multipart-data
     // HEADER multipart/form-data
-    axios.post(`${process.env.VUE_APP_API_BASE}/lostandfounds/${lostfoundId}/lostandfound-files`, form, {
+    axios.post(`${process.env.VUE_APP_API_BASE}/lostandfounds/${lostfoundId}/animal-files`, form, {
       headers: {
         'content-type': 'multipart/form-data'
       }

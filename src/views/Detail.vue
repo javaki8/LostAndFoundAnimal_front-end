@@ -1,16 +1,15 @@
 <template>
   <div>
-    <menu-tabs></menu-tabs>
     <v-container>
       <v-row>
         <v-col cols="3"></v-col>
         <v-col cols="6" align-self="center">
           <v-card class="mx-auto my-12" max-width="80%" flat>
-            <v-img :src="lists.popfile"></v-img>
+            <v-img></v-img>
             <v-row>
               <v-col>
                 <v-card-title class="headline mb-1">{{
-                  list.processState
+                  list.status
                 }}</v-card-title>
               </v-col>
               <v-col> </v-col>
@@ -83,9 +82,9 @@
 <script>
 import api from "@/api/lostandfound";
 export default {
-  name: "details",
+  name: "Detail",
   data: () => ({
-    lists: [],
+    list: [],
   }),
   mounted() {
     this.getDetails();
@@ -97,7 +96,7 @@ export default {
       console.log("----result.data----");
       console.log(result.data);
       if (result.status == 200) {
-        this.lists = result.data;
+        this.list = result.data;
       }
     },
 
