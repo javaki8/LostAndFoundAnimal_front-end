@@ -14,9 +14,12 @@
             required
           ></v-select>
 
-          <v-checkbox v-model="newList.lost" label="분실"></v-checkbox>
-          <v-checkbox v-model="newList.found" label="보호"></v-checkbox>
-
+          <v-select
+            v-model="newList.state"
+            :items="['분실', '보호']"
+            label="분실/보호*"
+            required
+          ></v-select>
           <v-menu
             v-model="newList.menu2"
             :close-on-content-click="false"
@@ -90,9 +93,13 @@
           <small>*작성한 글은 관리자 승인 후 등록됩니다.</small>
         </v-card-text>
 
-        <v-btn color="primary" @click="share()"> 등록 </v-btn>
+        <v-btn class="ma-2" outlined color="indigo" @click="share">
+          등록
+        </v-btn>
 
-        <v-btn color="primary" text @click="animalList()"> 취소 </v-btn>
+        <v-btn class="ma-2" outlined color="indigo" text @click="animalList()">
+          취소
+        </v-btn>
       </v-card>
     </v-col>
   </v-row>
@@ -116,6 +123,7 @@ export default {
       found: null,
       content: null,
       type: null,
+      state: null,
     },
     files: [],
   }),
@@ -132,6 +140,7 @@ export default {
         date: this.newList.date,
         content: this.newList.content,
         type: this.newList.type,
+        state: this.newList.state,
       };
       const result = await api.post(lostandfound);
       console.log(result);
@@ -155,8 +164,7 @@ export default {
             });
           }
         }
-        console.log("----파일 업로드 lists");
-        console.log(lists.files[0].dataUrl);
+        this.$router.push("/Page");
       }
     },
     animalList() {

@@ -1,26 +1,26 @@
 <template>
   <v-container grid-list-xl>
     <MenuItem />
-    <v-row>
-      <v-card>
-        <v-card-title>
-          <v-chip width="40%" class="ma-2" color="primary" outlined pill>
-            반려동물등록 대행업체 조회
-          </v-chip>
-          <v-spacer></v-spacer>
-          <div>
-            <v-select :items="addr" clearable label="시/도"></v-select>
-          </div>
-          <div>
-            <v-select :items="addrDtl" clearable label="구/군"> </v-select>
-          </div>
-        </v-card-title>
-        <v-data-table
-          :headers="headers"
-          :items="desserts"
-          :search="search"
-        ></v-data-table>
-      </v-card>
+    <v-row justify="center">
+      <v-col cols="12" sm="10">
+        <v-card>
+          <v-card-title>
+            <v-chip width="40%" class="ma-2" color="primary" outlined pill>
+              반려동물등록 대행업체 조회
+            </v-chip>
+            <v-select :items="addr" label="시/도" />
+            <v-select :items="addrDtl" label="구/군" />
+            <v-btn>
+              <v-icon>fas fa-search</v-icon>
+            </v-btn>
+          </v-card-title>
+          <v-data-table
+            :headers="headers"
+            :items="desserts"
+            :search="search"
+          ></v-data-table>
+        </v-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>    

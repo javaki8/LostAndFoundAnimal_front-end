@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-xl>
-    <v-toolbar color="cyan" dark flat height="15px">
+    <v-toolbar flat height="15px">
       <template v-slot:extension>
         <v-tabs align-with-title>
           <v-tab v-for="(menu, i) in menus" :key="i" @click="navigateTo(menu)">
@@ -9,14 +9,6 @@
         </v-tabs>
       </template>
     </v-toolbar>
-
-    <v-tabs-items>
-      <v-tab-item>
-        <v-card flat>
-          <v-card-text></v-card-text>
-        </v-card>
-      </v-tab-item>
-    </v-tabs-items>
   </v-container>
 </template>
 

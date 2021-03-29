@@ -25,7 +25,7 @@
 <script>
 import api from "@/api/lostandfound";
 export default {
-  name: "Detail",
+  name: "Modify",
   data: () => ({
     list: [],
   }),

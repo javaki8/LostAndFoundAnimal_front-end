@@ -1,9 +1,12 @@
  <template>
   <v-container grid-list-xl>
     <MenuItem />
-
     <v-layout row wrap>
-      <v-btn @click="write()" depressed color="primary">글쓰기 </v-btn>
+      <div style="center">
+        <v-btn class="ma-2" outlined color="indigo" @click="write()"
+          >글쓰기
+        </v-btn>
+      </div>
     </v-layout>
     <v-row>
       <v-col
@@ -15,26 +18,27 @@
         sm="4"
       >
         <v-card class="mx-auto my-12" max-width="374" @click="details(item.id)">
-          <v-img height="300" :src="list.dataUrl"></v-img>
+          <v-img height="350" :src="item.files[0].dataUrl"></v-img>
 
-          <v-card-title>{{ item.lost }} {{ item.found }}</v-card-title>
+          <v-card-title>[{{ item.state }}]</v-card-title>
 
+          <v-card-subtitle> {{ item.date }} </v-card-subtitle>
+
+          <v-divider></v-divider>
           <v-card-text>
             <v-container>
               <v-row align="center" class="mx-0">
-                <v-col sm="6">
-                  <v-card flat> {{ item.date }} </v-card>
+                <v-col>
+                  <v-card flat> 종: {{ item.type }} </v-card>
                 </v-col>
-                <v-col sm="6">
-                  <v-card flat> {{ item.type }} </v-card>
+
+                <v-col>
+                  <v-card flat> 성별: {{ item.gender }} </v-card>
                 </v-col>
               </v-row>
               <v-row>
-                <v-col sm="6">
-                  <v-card flat> {{ item.gender }} </v-card>
-                </v-col>
-                <v-col sm="6">
-                  <v-card flat> {{ item.area }} </v-card>
+                <v-col>
+                  <v-card flat> 지역: {{ item.area }} </v-card>
                 </v-col>
               </v-row>
             </v-container>
@@ -44,7 +48,7 @@
     </v-row>
     <v-pagination
       class="my-4"
-      :total-visible="10"
+      :total-visible="5"
       @input="changePage"
     ></v-pagination>
   </v-container>
@@ -80,8 +84,6 @@ export default {
         this.list = result.data;
         console.log("저장 후 리스트");
         console.log(this.list);
-        let dataUrl = this.list[0].files[0].dataUrl;
-        this.list.dataUrl = dataUrl;
       }
     },
     async changePage(value) {

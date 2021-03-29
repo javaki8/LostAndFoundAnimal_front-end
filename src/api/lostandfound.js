@@ -21,7 +21,9 @@ export default {
         'content-type': 'multipart/form-data'
       }
     }),
-  details: (id) => axios.patch(`${process.env.VUE_APP_API_BASE}/lostandfounds/${id}`)
+  details: (id) => axios.get(`${process.env.VUE_APP_API_BASE}/lostandfounds/${id}`),
   // detail http://localhost:8080/lostandfounds/{id}
+
+  keyword: (keyword) => axios.get(`${process.env.VUE_APP_API_BASE}/lostandfounds/search/number?keyword=${keyword}`)
 
 }
