@@ -114,16 +114,6 @@ export default {
       date: new Date().toISOString().substr(0, 10),
       //menu2 -> 캘린더
       menu2: false,
-      name: null,
-      area: null,
-      color: null,
-      gender: null,
-      number: null,
-      lost: null,
-      found: null,
-      content: null,
-      type: null,
-      state: null,
     },
     files: [],
   }),
@@ -135,36 +125,38 @@ export default {
         color: this.newList.color,
         gender: this.newList.gender,
         number: this.newList.number,
-        lost: this.newList.lost,
-        found: this.newList.found,
         date: this.newList.date,
         content: this.newList.content,
         type: this.newList.type,
         state: this.newList.state,
       };
-      const result = await api.post(lostandfound);
-      console.log(result);
-      console.log("글쓰기 result.data");
-      console.log(result.data);
-      if (result.status == 200) {
-        const lists = result.data;
-        lists.files = [];
+      if (this.files.length !== 0) {
+        const result = await api.post(lostandfound);
+        console.log(result);
+        console.log("글쓰기 result.data");
+        console.log(result.data);
+        if (result.status == 200) {
+          const lists = result.data;
+          lists.files = [];
 
-        if (this.files && this.files.length > 0) {
-          const lostandfoundId = lists.id;
+          if (this.files && this.files.length > 0) {
+            const lostandfoundId = lists.id;
 
-          for (let file of this.files) {
-            const form = new FormData();
-            form.append("data", file);
-            const result = await api.uploadFile(lostandfoundId, form);
-            console.log("----image----");
-            console.log(result.data);
-            lists.files.push({
-              ...result.data,
-            });
+            for (let file of this.files) {
+              const form = new FormData();
+              form.append("data", file);
+              const result = await api.uploadFile(lostandfoundId, form);
+              console.log("----image----");
+              console.log(result.data);
+              lists.files.push({
+                ...result.data,
+              });
+            }
           }
+          this.$router.push("/Page");
         }
-        this.$router.push("/Page");
+      } else {
+        alert("사진이 비어있습니다.");
       }
     },
     animalList() {

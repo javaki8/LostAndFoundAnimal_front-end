@@ -56,6 +56,11 @@ const routes = [
     name: 'Modify',
     component: () => import('../views/Modify.vue')
   },
+  {
+    path: '/InquiryPage',
+    name: 'InquiryPage',
+    component: () => import('../views/InquiryPage.vue')
+  },
 ]
 
 const router = new VueRouter({

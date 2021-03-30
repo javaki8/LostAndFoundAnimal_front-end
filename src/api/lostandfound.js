@@ -24,6 +24,9 @@ export default {
   details: (id) => axios.get(`${process.env.VUE_APP_API_BASE}/lostandfounds/${id}`),
   // detail http://localhost:8080/lostandfounds/{id}
 
-  keyword: (keyword) => axios.get(`${process.env.VUE_APP_API_BASE}/lostandfounds/search/number?keyword=${keyword}`)
+  keyword: (keyword) => axios.get(`${process.env.VUE_APP_API_BASE}/lostandfounds/search/number?keyword=${keyword}`),
+
+  modify: (id, list) => axios.patch(`${process.env.VUE_APP_API_BASE}/lostandfounds/${id}`, list)
+
 
 }

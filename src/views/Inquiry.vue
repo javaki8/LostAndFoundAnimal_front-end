@@ -1,20 +1,52 @@
 <template>
   <v-container grid-list-xl>
     <MenuItem />
-    <v-col sm="5">
-      <h3>휴대폰 번호</h3>
-      <v-spacer />
-      <v-text-field
-        v-model="keyword"
-        label="010-0000-0000"
-        outlined
-        clearable
-      ></v-text-field>
-      <v-btn @click="checkMatchNumber(keyword)">
-        조회
-        <v-dialog v-model="dialog" width="500"></v-dialog>
-      </v-btn>
-    </v-col>
+    <v-row justify="center">
+      <v-col cols="12" sm="5">
+        <v-row>
+          <h3>연락처</h3>
+          <v-text-field
+            v-model="keyword"
+            label="010-0000-0000"
+            outlined
+            clearable
+          ></v-text-field>
+        </v-row>
+        <div class="text-center">
+          <v-dialog v-model="dialog" width="500">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                @click="checkMatchNumber(keyword)"
+                class="ma-2"
+                outlined
+                color="indigo"
+                v-bind="attrs"
+                v-on="on"
+              >
+                조회
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title class="headline indigo lighten-5"> </v-card-title>
+              <v-card-text class="text-center">
+                잘못된 연락처입니다. 다시 입력해주세요.
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  class="ma-2"
+                  outlined
+                  color="indigo"
+                  @click="dialog = false"
+                >
+                  확인
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 <script>
@@ -27,6 +59,7 @@ export default {
   data: () => ({
     keyword: "",
     dialog: false,
+    files: [],
   }),
 
   methods: {
@@ -37,21 +70,11 @@ export default {
       console.log(result);
 
       if (result.status == 200) {
-        this.$router.push("/Modify");
-      } else {
-        this.dialog;
+        this.dialog = true;
+        this.$router.push({ name: "InquiryPage", params: { keyword } });
       }
     },
   },
 };
-//     ask() {
-//       this.$router.push("/Progress");
-//     },
-//   },
-//   //     ask() {
-//   //  if() {this.$router.push("/Page");
-//   //}
-//   // },
-// };
 </script>
 
