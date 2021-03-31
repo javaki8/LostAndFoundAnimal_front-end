@@ -130,7 +130,7 @@ export default {
         type: this.newList.type,
         state: this.newList.state,
       };
-      if (this.files.length !== 0) {
+      if (this.files.length && this.number !== null) {
         const result = await api.post(lostandfound);
         console.log(result);
         console.log("글쓰기 result.data");
@@ -156,7 +156,7 @@ export default {
           this.$router.push("/Page");
         }
       } else {
-        alert("사진이 비어있습니다.");
+        alert("필수 입력 사항입니다.");
       }
     },
     animalList() {
