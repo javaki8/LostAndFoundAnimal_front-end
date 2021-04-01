@@ -1,13 +1,10 @@
  <template>
   <v-container grid-list-xl>
     <MenuItem />
-    <v-layout row wrap>
-      <div style="center">
-        <v-btn class="ma-2" outlined color="indigo" @click="write()"
-          >글쓰기
-        </v-btn>
-      </div>
-    </v-layout>
+    <v-btn absolute light outlined color="indigo" @click="write()"
+      >글쓰기
+    </v-btn>
+
     <v-row>
       <v-col
         v-for="(item, i) in list"
@@ -18,7 +15,7 @@
         sm="4"
       >
         <v-card class="mx-auto my-12" max-width="374" @click="details(item.id)">
-          <v-img height="350" :src="item.files[0].dataUrl"></v-img>
+          <v-img height="320" :src="item.files[0].dataUrl"></v-img>
 
           <v-card-title>[{{ item.state }}]</v-card-title>
 

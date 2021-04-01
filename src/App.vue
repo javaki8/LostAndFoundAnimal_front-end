@@ -65,7 +65,10 @@ export default {
 
   methods: {
     navigateTo(item) {
-      this.$router.push(item.path);
+      if (this.$route.path != item.path) {
+        // 라우터에 경로 추가
+        this.$router.push(item.path);
+      }
     },
   },
 };

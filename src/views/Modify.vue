@@ -43,9 +43,7 @@
           <v-card-text class="text-center"> 수정되었습니다. </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn class="ma-2" outlined color="indigo" @click="dialog = false">
-              확인
-            </v-btn>
+            <v-btn class="ma-2" outlined color="indigo"> 확인 </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -86,8 +84,6 @@ export default {
     },
     async modifyList(list) {
       const id = this.list.id;
-      console.log("----------modifyList ");
-      console.log(id);
       const result = await api.modify(id, list);
       console.log("-----수정-------");
       console.log(result);
