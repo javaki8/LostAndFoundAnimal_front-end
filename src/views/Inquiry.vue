@@ -4,10 +4,10 @@
     <v-row justify="center">
       <v-col cols="12" sm="5">
         <v-row>
-          <h3>연락처</h3>
+          <v-chip class="ma-5" label outlined> 연락처 </v-chip>
           <v-text-field
             v-model="keyword"
-            label="010-0000-0000"
+            label="연락처를 입력해주세요."
             outlined
             clearable
           ></v-text-field>

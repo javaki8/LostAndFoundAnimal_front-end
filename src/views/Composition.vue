@@ -74,14 +74,13 @@
           </v-text-field>
           <v-text-field v-model="newList.name" label="이름*" required>
           </v-text-field>
+
           <v-select
+            :items="filters.options.sidoOption"
             v-model="newList.area"
-            :items="['서울', '경기', '강원', '제주']"
             label="지역*"
             required
-          >
-          </v-select>
-
+          ></v-select>
           <v-select
             v-model="newList.gender"
             :items="['암컷', '수컷', '모름']"
@@ -107,8 +106,11 @@
 
 <script>
 import api from "@/api/lostandfound";
+import filters from "../data/RecordAgencyFilter";
+
 export default {
   data: () => ({
+    filters,
     dialog: false,
     newList: {
       date: new Date().toISOString().substr(0, 10),
@@ -131,10 +133,21 @@ export default {
         state: this.newList.state,
       };
       if (this.files.length && this.number !== null) {
+        //------ 디스 하면 text로 나오는데 계속 들어가는 값은 숫자-----------------------
+        const sidoData = this.filters.support.area;
+        const optSido = this.filters.options.sidoOption;
+        const sidoArr = optSido.filter((o) => o.value == sidoData);
+
+        console.log("시도데이터" + sidoData);
+        this.newList.area = sidoArr[0].text;
+        console.log("디스" + this.newList.area);
+
         const result = await api.post(lostandfound);
+
         console.log(result);
         console.log("글쓰기 result.data");
         console.log(result.data);
+        //-------------------------------------------------
         if (result.status == 200) {
           const lists = result.data;
           lists.files = [];

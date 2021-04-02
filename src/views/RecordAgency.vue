@@ -8,7 +8,6 @@
             <v-chip width="40%" class="ma-2" color="primary" outlined pill>
               반려동물등록 대행업체 조회
             </v-chip>
-
             <v-select
               :items="filters.options.sidoOption"
               v-model="filters.support.area"
@@ -27,11 +26,11 @@
               class="ma-2"
             ></v-select>
 
-            <v-btn @click="filterData()">
+            <v-btn @click="filterData" v-model="filterData">
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
           </v-card-title>
-          <v-data-table :headers="headers"></v-data-table>
+          <v-data-table :headers="headers" :items="agency"> </v-data-table>
         </v-card>
       </v-col>
     </v-row>
@@ -53,16 +52,18 @@ export default {
     tab: null,
     headers: [
       {
-        text: "시/도",
+        text: "No.id",
         align: "start",
         sortable: false,
-        value: "name",
+        value: "id",
       },
-      { text: "업체명" },
-      { text: "업체전화번호" },
-      { text: "시/군/구" },
-      { text: "주소" },
+      { text: "시/도", value: "sido" },
+      { text: "시/군/구", value: "gugun" },
+      { text: "업체명", value: "orgNm" },
+      { text: "상세주소", value: "addrDtl" },
+      { text: "업체전화번호", value: "tel" },
     ],
+    agency: [{}],
   }),
   computed: {
     filterArea() {
@@ -76,13 +77,17 @@ export default {
     async filterData() {
       const sidoData = this.filters.support.area;
       const gugunData = this.filters.items.areaId;
+
       console.log("시도데이터--" + sidoData + "--구군데이터--" + gugunData);
+
+      //filter.js value와 비교
       const optSido = this.filters.options.sidoOption;
       const sidoArr = optSido.filter((o) => o.value == sidoData);
 
       const sido = sidoArr[0].text;
       console.log("시도-----" + sido);
 
+      //gugunData 는 text라 o.text와 비교
       const optGugun = this.filters.options.gugunOption;
       console.log(optGugun);
       const gugunArr = optGugun.filter((o) => o.text == gugunData);
@@ -92,8 +97,9 @@ export default {
       let page = 1;
       const result = await api.sido(sido, gugun, page);
       console.log(result);
+      //agency []안에 값을 넣고 data에서 value로 불러옴
       if (result.status == 200) {
-        this.list = result.data;
+        this.agency = result.data;
       }
     },
   },

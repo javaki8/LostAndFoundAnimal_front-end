@@ -8,7 +8,7 @@ export default {
 
 
   // GET http://localhost:8080/lostandfounds
-  list: () => axios.get(`${process.env.VUE_APP_API_BASE}/lostandfounds`),
+  list: (page) => axios.get(`${process.env.VUE_APP_API_BASE}/lostandfounds?page=${page}&size=3`),
 
   post: (lostandfound) => axios.post(`${process.env.VUE_APP_API_BASE}/lostandfounds`, lostandfound),
 

@@ -1,22 +1,77 @@
 <template>
   <v-row justify="center">
     <v-col cols="12" sm="10" md="7" lg="6">
-      <v-card>
-        <v-img height="300" v-if="list.files" :src="list.files[0].dataUrl">
-          <v-card-title class="headline white--text"
-            >{{ list.status }} 승인 진행중</v-card-title
-          >
+      <v-card max-width="800" elevation="2" outlined>
+        <v-img v-if="list.files" :src="list.files[0].dataUrl">
+          <v-chip class="headline ma-5 orange" text-color="white">
+            {{ list.status }} 승인진행중
+          </v-chip>
         </v-img>
 
         <v-card-title>{{ list.state }} 중 입니다.</v-card-title>
-        <v-card-title>성별: {{ list.gender }} </v-card-title>
-        <v-card-title>색깔 : {{ list.color }} </v-card-title>
-        <v-card-title>
-          이름 : {{ list.name }} / 연락처 : {{ list.number }}
-        </v-card-title>
-        <v-card-title>날짜: {{ list.date }} </v-card-title>
-        <v-card-title>지역: {{ list.area }} </v-card-title>
-        <v-card-title>특징: {{ list.content }}</v-card-title>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col>
+            <v-card-title class="text--secondary">성별: </v-card-title>
+          </v-col>
+          <v-col>
+            <v-card-title>{{ list.gender }}</v-card-title>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col>
+            <v-card-title class="text--secondary">색깔: </v-card-title>
+          </v-col>
+          <v-col>
+            <v-card-title>{{ list.color }} </v-card-title>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col>
+            <v-card-title class="text--secondary">이름: </v-card-title>
+          </v-col>
+          <v-col>
+            <v-card-title>{{ list.name }} </v-card-title>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col>
+            <v-card-title class="text--secondary">연락처: </v-card-title>
+          </v-col>
+          <v-col>
+            <v-card-title>{{ list.number }} </v-card-title>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col>
+            <v-card-title class="text--secondary">날짜: </v-card-title>
+          </v-col>
+          <v-col>
+            <v-card-title>{{ list.date }} </v-card-title>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col>
+            <v-card-title class="text--secondary">지역: </v-card-title>
+          </v-col>
+          <v-col>
+            <v-card-title>{{ list.area }} </v-card-title>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col>
+            <v-card-title class="text--secondary">특징: </v-card-title>
+          </v-col>
+          <v-col>
+            <v-card-title>{{ list.content }} </v-card-title>
+          </v-col>
+        </v-row>
       </v-card>
       <v-btn class="ma-2" outlined color="indigo" @click="inquiry">목록</v-btn>
       <v-btn class="ma-2" outlined color="indigo" @click="modifyPage(list.id)"

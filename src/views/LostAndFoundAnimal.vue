@@ -1,11 +1,11 @@
  <template>
   <v-container grid-list-xl>
     <MenuItem />
-    <v-btn absolute light outlined color="indigo" @click="write()"
-      >글쓰기
-    </v-btn>
 
     <v-row>
+      <v-btn absolute right outlined color="indigo" @click="write()"
+        >글쓰기
+      </v-btn>
       <v-col
         v-for="(item, i) in list"
         :key="i"
@@ -14,8 +14,12 @@
         cols="12"
         sm="4"
       >
-        <v-card class="mx-auto my-12" max-width="374" @click="details(item.id)">
-          <v-img height="320" :src="item.files[0].dataUrl"></v-img>
+        <v-card class="my-12" max-width="350" @click="details(item.id)">
+          <v-img
+            height="320"
+            :alt="list.name"
+            :src="item.files[0].dataUrl"
+          ></v-img>
 
           <v-card-title>[{{ item.state }}]</v-card-title>
 
@@ -43,9 +47,11 @@
         </v-card>
       </v-col>
     </v-row>
+
     <v-pagination
+      v-model="page"
       class="my-4"
-      :total-visible="5"
+      :length="totalPages"
       @input="changePage"
     ></v-pagination>
   </v-container>
@@ -63,6 +69,7 @@ export default {
   data: () => ({
     list: [],
     page: 1,
+    totalPages: 0,
     dialog: false,
     files: [],
   }),
@@ -72,23 +79,27 @@ export default {
 
   methods: {
     async getLostAndFounds() {
-      const result = await api.list();
+      let page = 0;
+      const result = await api.list(page);
       console.log(result);
       console.log("목록 result.data");
-      console.log(result.data);
+      console.log(result.data.content);
 
       if (result.status == 200) {
-        this.list = result.data;
+        this.list = result.data.content;
+        this.totalPages = result.data.totalPages;
         console.log("저장 후 리스트");
         console.log(this.list);
       }
     },
     async changePage(value) {
+      console.log(value);
+      console.log("value");
       let page = value - 1;
 
       const result = await api.list(page);
       if (result.status == 200) {
-        this.lists = result.data;
+        this.list = result.data.content;
       }
     },
 
