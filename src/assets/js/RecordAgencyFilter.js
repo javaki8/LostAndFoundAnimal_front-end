@@ -7,7 +7,6 @@ export default {
   },
   options: {
     sidoOption: [
-      { text: "전체", value: 18 },
       { text: "서울특별시", value: 1 },
       { text: "부산광역시", value: 2 },
       { text: "대구광역시", value: 3 },
@@ -28,8 +27,6 @@ export default {
     ],
 
     gugunOption: [
-      { text: "전체", gugun: 18 },
-      { text: "전체", gugun: 1 },
       { text: "강남구", gugun: 1 },
       { text: "강동구", gugun: 1 },
       { text: "강북구", gugun: 1 },

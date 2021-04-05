@@ -39,7 +39,7 @@
 
 <script>
 import MenuItem from "@/components/MenuItem.vue";
-import filters from "../data/RecordAgencyFilter";
+import filters from "../assets/js/RecordAgencyFilter";
 import api from "@/api/agency";
 
 export default {
@@ -87,15 +87,15 @@ export default {
       const sido = sidoArr[0].text;
       console.log("시도-----" + sido);
 
-      //gugunData 는 text라 o.text와 비교
+      //gugunData -> o.text와 비교
       const optGugun = this.filters.options.gugunOption;
       console.log(optGugun);
       const gugunArr = optGugun.filter((o) => o.text == gugunData);
       const gugun = gugunArr[0].text;
 
       console.log("---gugun---" + gugun);
-      let page = 1;
-      const result = await api.sido(sido, gugun, page);
+      let page = 0;
+      const result = await api.get(sido, gugun, page);
       console.log(result);
       //agency []안에 값을 넣고 data에서 value로 불러옴
       if (result.status == 200) {

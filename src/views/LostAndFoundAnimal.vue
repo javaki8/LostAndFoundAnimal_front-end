@@ -3,9 +3,7 @@
     <MenuItem />
 
     <v-row>
-      <v-btn absolute right outlined color="indigo" @click="write()"
-        >글쓰기
-      </v-btn>
+      <v-btn absolute right outlined @click="write()">글쓰기 </v-btn>
       <v-col
         v-for="(item, i) in list"
         :key="i"
@@ -20,17 +18,22 @@
             :alt="list.name"
             :src="item.files[0].dataUrl"
           ></v-img>
-
-          <v-card-title>[{{ item.state }}]</v-card-title>
-
-          <v-card-subtitle> {{ item.date }} </v-card-subtitle>
-
+          <v-row>
+            <v-col>
+              <v-card-title>[{{ item.state }}]</v-card-title>
+            </v-col>
+            <v-col>
+              <v-card-subtitle>
+                <v-icon left> mdi-alarm-check </v-icon>{{ item.date }}
+              </v-card-subtitle>
+            </v-col>
+          </v-row>
           <v-divider></v-divider>
           <v-card-text>
             <v-container>
               <v-row align="center" class="mx-0">
                 <v-col>
-                  <v-card flat> 종: {{ item.type }} </v-card>
+                  <v-card flat> 축종: {{ item.type }} </v-card>
                 </v-col>
 
                 <v-col>
@@ -81,16 +84,19 @@ export default {
     async getLostAndFounds() {
       let page = 0;
       const result = await api.list(page);
+
       console.log(result);
       console.log("목록 result.data");
       console.log(result.data.content);
 
       if (result.status == 200) {
+        //if (status == "승인") {
         this.list = result.data.content;
         this.totalPages = result.data.totalPages;
         console.log("저장 후 리스트");
         console.log(this.list);
       }
+      //}
     },
     async changePage(value) {
       console.log(value);

@@ -19,7 +19,6 @@
                 @click="checkMatchNumber(keyword)"
                 class="ma-2"
                 outlined
-                color="indigo"
                 v-bind="attrs"
                 v-on="on"
               >
@@ -33,12 +32,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn
-                  class="ma-2"
-                  outlined
-                  color="indigo"
-                  @click="dialog = false"
-                >
+                <v-btn class="ma-2" outlined @click="dialog = false">
                   확인
                 </v-btn>
               </v-card-actions>
