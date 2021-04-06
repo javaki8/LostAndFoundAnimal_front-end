@@ -18,6 +18,13 @@
           </v-file-input>
           <v-row align="center" class="mx-0">
             <v-col>
+              <v-select
+                :items="filters.options.sidoOption"
+                v-model="newList.area"
+                label="지역"
+              ></v-select>
+            </v-col>
+            <v-col>
               <v-radio-group v-model="newList.state" style="fiex-column: row">
                 <v-radio
                   label="분실"
@@ -26,13 +33,6 @@
                 ></v-radio>
                 <v-radio label="보호" value="보호"></v-radio>
               </v-radio-group>
-            </v-col>
-            <v-col>
-              <v-select
-                :items="filters.options.sidoOption"
-                v-model="newList.area"
-                label="지역"
-              ></v-select>
             </v-col>
           </v-row>
           <v-row align="center" class="mx-0">
@@ -162,9 +162,6 @@ export default {
 
         const result = await api.post(lostandfound);
 
-        console.log(result);
-        console.log("글쓰기 result.data");
-        console.log(result.data);
         if (result.status == 200) {
           const list = result.data;
           list.files = [];
@@ -191,11 +188,6 @@ export default {
     animalList() {
       this.$router.push("/LostAndFoundAnimal");
     },
-  },
-  apply(id) {
-    console.log("----글등록 버튼 클릭 id 넘겨주기----");
-    console.log(id);
-    this.$router.push({ name: "progress", params: { id } });
   },
 };
 </script>

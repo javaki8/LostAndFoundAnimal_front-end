@@ -1,7 +1,6 @@
  <template>
   <v-container grid-list-xl>
     <MenuItem />
-
     <v-row>
       <v-btn absolute right outlined @click="write()">글쓰기 </v-btn>
       <v-col
@@ -85,22 +84,12 @@ export default {
       let page = 0;
       const result = await api.list(page);
 
-      console.log(result);
-      console.log("목록 result.data");
-      console.log(result.data.content);
-
       if (result.status == 200) {
-        //if (status == "승인") {
         this.list = result.data.content;
         this.totalPages = result.data.totalPages;
-        console.log("저장 후 리스트");
-        console.log(this.list);
       }
-      //}
     },
     async changePage(value) {
-      console.log(value);
-      console.log("value");
       let page = value - 1;
 
       const result = await api.list(page);

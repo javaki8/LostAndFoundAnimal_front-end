@@ -27,6 +27,7 @@ export default {
     ],
 
     gugunOption: [
+      { text: "전체", gugun: 1 },
       { text: "강남구", gugun: 1 },
       { text: "강동구", gugun: 1 },
       { text: "강북구", gugun: 1 },

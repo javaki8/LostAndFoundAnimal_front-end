@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row justify="center">
-      <v-col cols="12" sm="10" lg="4">
+      <v-col cols="6">
         <v-card>
           <v-img
             :alt="list.name"
@@ -98,7 +98,7 @@
         </v-card>
         <v-btn class="ma-2" outlined color="indigo" @click="animal">목록</v-btn>
 
-        <v-dialog v-model="dialog" width="500">
+        <v-dialog v-model="dialog" max-width="650" style="overflow-y: 0">
           <template v-slot:activator="{ on, attrs }">
             <v-btn outlined color="indigo" v-bind="attrs" v-on="on">
               전단지</v-btn
@@ -106,22 +106,23 @@
           </template>
 
           <v-card>
-            <v-card-title class="headline orange lighten-1">
-              {{ list.type }}를 찾습니다.
-            </v-card-title>
             <v-img
+              max-height="400"
               :alt="list.name"
               v-if="list.files"
               :src="list.files[0].dataUrl"
             >
-              <h3 class="orange lighten-3" align="center">
-                여러분의 제보가 큰 힘이 됩니다.
-              </h3></v-img
+              <v-card-title class="headline white font-weight-black">
+                {{ list.type }}를 찾습니다.
+              </v-card-title></v-img
             >
+            <h3 class="green darken-1" align="center">
+              여러분의 제보가 큰 힘이 됩니다.
+            </h3>
             <v-row>
               <v-col>
                 <v-card-title>
-                  <v-chip class="ma-2" color="orange" label text-color="white">
+                  <v-chip color="orange" label text-color="white">
                     축 종
                   </v-chip>
                   {{ list.type }}
@@ -130,7 +131,7 @@
 
               <v-col>
                 <v-card-title>
-                  <v-chip class="ma-2" color="orange" label text-color="white">
+                  <v-chip color="orange" label text-color="white">
                     날 짜
                   </v-chip>
                   {{ list.date }}
@@ -140,35 +141,37 @@
             <v-row>
               <v-col>
                 <v-card-title>
-                  <v-chip class="ma-2" color="orange" label text-color="white">
+                  <v-chip color="orange" label text-color="white">
                     지 역
                   </v-chip>
                   {{ list.area }}
                 </v-card-title>
-
+              </v-col>
+              <v-col>
                 <v-card-title>
-                  <v-chip class="ma-2" color="orange" label text-color="white">
+                  <v-chip color="orange" label text-color="white">
                     색 깔
                   </v-chip>
                   {{ list.color }}</v-card-title
                 >
-
+              </v-col>
+            </v-row>
+            <v-col>
+              <v-card-title>
+                <v-chip color="orange" label text-color="white"> 성 별 </v-chip>
+                {{ list.gender }}
+              </v-card-title>
+            </v-col>
+            <v-row>
+              <v-col>
                 <v-card-title>
-                  <v-chip class="ma-2" color="orange" label text-color="white">
-                    성 별
+                  <v-chip color="orange" label text-color="white">
+                    특 징
                   </v-chip>
-                  {{ list.gender }}
+                  {{ list.content }}
                 </v-card-title>
               </v-col>
             </v-row>
-
-            <v-card-title>
-              <v-chip class="ma-2" color="orange" label text-color="white">
-                특 징
-              </v-chip>
-              {{ list.content }}
-            </v-card-title>
-
             <v-divider></v-divider>
             <v-card-title>
               <v-chip class="ma-2" color="orange" label text-color="white">
@@ -203,8 +206,6 @@ export default {
     async getDetails() {
       let id = this.$route.params.id;
       const result = await api.details(id);
-      console.log("---Detail data----");
-      console.log(result.data);
 
       if (result.status == 200) {
         this.list = result.data;

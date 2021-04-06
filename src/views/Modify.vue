@@ -9,11 +9,11 @@
           :src="list.files[0].dataUrl"
         >
           <v-chip class="headline ma-5 orange" text-color="white">
-            {{ list.status }} 승인진행중
+            {{ list.status }} 중
           </v-chip>
         </v-img>
 
-        <v-card-title>수정하기</v-card-title>
+        <v-card-title align="center">수정 페이지입니다.</v-card-title>
 
         <v-row>
           <v-col>
@@ -62,19 +62,19 @@
 
         <v-col>
           <v-text-field
-            v-model="list.content"
-            label="특징*"
-            placeholder="수정해주세요."
-            outlined
-          ></v-text-field>
-
-          <v-text-field
             v-model="list.number"
             label="연락처*"
             placeholder="수정해주세요."
             outlined
           >
           </v-text-field>
+          <v-textarea
+            v-model="list.content"
+            label="특징*"
+            placeholder="수정해주세요."
+            outlined
+          >
+          </v-textarea>
         </v-col>
       </v-card>
       <v-btn class="ma-2" outlined color="indigo" @click="backPage()"
@@ -142,8 +142,7 @@ export default {
     async modifyList(list) {
       const id = this.list.id;
       const result = await api.modify(id, list);
-      console.log("-----수정-------");
-      console.log(result);
+
       if (result.status == 200) {
         this.list = result.data;
         this.dialog = true;

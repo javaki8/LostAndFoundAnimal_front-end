@@ -38,13 +38,6 @@ const routes = [
     name: 'Page',
     component: () => import('../views/Page.vue')
   },
-
-  {
-    path: '/Progress',
-    name: 'Progress',
-    component: () => import('../views/Progress.vue')
-  },
-
   {
     path: '/Detail',
     name: 'Detail',

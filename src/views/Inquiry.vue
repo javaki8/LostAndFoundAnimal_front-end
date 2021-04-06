@@ -58,14 +58,11 @@ export default {
 
   methods: {
     async checkMatchNumber(keyword) {
-      console.log(keyword);
       const result = await api.keyword(keyword);
 
-      console.log(result);
-
       if (result.status == 200) {
-        this.dialog = true;
         this.$router.push({ name: "InquiryPage", params: { keyword } });
+        this.dialog = true;
       }
     },
   },
