@@ -30,12 +30,7 @@
             ></v-select>
           </v-col>
           <v-col>
-            <v-btn
-              class="ma-2"
-              outlined
-              @click="filterData"
-              v-model="filterData"
-            >
+            <v-btn class="ma-2" @click="filterData" v-model="filterData">
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
           </v-col>
@@ -66,9 +61,9 @@ export default {
         sortable: false,
         value: "id",
       },
+      { text: "업체명", value: "orgNm" },
       { text: "시/도", value: "sido" },
       { text: "시/군/구", value: "gugun" },
-      { text: "업체명", value: "orgNm" },
       { text: "상세주소", value: "addrDtl" },
       { text: "업체전화번호", value: "tel" },
     ],

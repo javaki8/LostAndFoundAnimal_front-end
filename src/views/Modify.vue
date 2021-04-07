@@ -17,7 +17,7 @@
 
         <v-row>
           <v-col>
-            <v-card-title class="text--secondary">성별: </v-card-title>
+            <v-card-title class="text--secondary">성 별: </v-card-title>
           </v-col>
           <v-col>
             <v-card-title>{{ list.gender }}</v-card-title>
@@ -26,7 +26,7 @@
 
         <v-row>
           <v-col>
-            <v-card-title class="text--secondary">색깔: </v-card-title>
+            <v-card-title class="text--secondary">털 색: </v-card-title>
           </v-col>
           <v-col>
             <v-card-title>{{ list.color }}</v-card-title>
@@ -35,7 +35,7 @@
 
         <v-row>
           <v-col>
-            <v-card-title class="text--secondary">이름: </v-card-title>
+            <v-card-title class="text--secondary">이 름: </v-card-title>
           </v-col>
           <v-col>
             <v-card-title>{{ list.name }}</v-card-title>
@@ -44,7 +44,7 @@
 
         <v-row>
           <v-col>
-            <v-card-title class="text--secondary">날짜: </v-card-title>
+            <v-card-title class="text--secondary">날 짜: </v-card-title>
           </v-col>
           <v-col>
             <v-card-title>{{ list.date }}</v-card-title>
@@ -53,7 +53,7 @@
 
         <v-row>
           <v-col>
-            <v-card-title class="text--secondary">지역: </v-card-title>
+            <v-card-title class="text--secondary">지 역: </v-card-title>
           </v-col>
           <v-col>
             <v-card-title>{{ list.area }}</v-card-title>

@@ -7,9 +7,11 @@
           <v-chip class="ma-5" label outlined> 연락처 </v-chip>
           <v-text-field
             v-model="keyword"
-            label="연락처를 입력해주세요."
+            label="특수문자 '-' 제외"
             outlined
             clearable
+            maxlength="11"
+            @keyup="getPhoneMask(keyword)"
           ></v-text-field>
         </v-row>
         <div class="text-center">
@@ -51,12 +53,76 @@ export default {
     MenuItem,
   },
   data: () => ({
-    keyword: "",
+    keyword: null,
     dialog: false,
     files: [],
   }),
 
   methods: {
+    getPhoneMask(val) {
+      let res = this.getMask(val);
+      this.keyword = res;
+      res = this.keyword.replace(/[^0-9]/g, "");
+    },
+    getMask(phoneNumber) {
+      if (!phoneNumber) return phoneNumber;
+      phoneNumber = phoneNumber.replace(/[^0-9]/g, "");
+
+      let res = "";
+      if (phoneNumber.length < 3) {
+        res = phoneNumber;
+      } else {
+        if (phoneNumber.substr(0, 2) == "02") {
+          if (phoneNumber.length <= 5) {
+            res = phoneNumber.substr(0, 2) + "-" + phoneNumber.substr(2, 3);
+          } else if (phoneNumber.length > 5 && phoneNumber.length <= 9) {
+            res =
+              phoneNumber.substr(0, 2) +
+              "-" +
+              phoneNumber.substr(2, 3) +
+              "-" +
+              phoneNumber.substr(5);
+          } else if (phoneNumber.length > 9) {
+            res =
+              phoneNumber.substr(0, 2) +
+              "-" +
+              phoneNumber.substr(2, 4) +
+              "-" +
+              phoneNumber.substr(6);
+          }
+        } else {
+          if (phoneNumber.length < 8) {
+            res = phoneNumber;
+          } else if (phoneNumber.length == 8) {
+            res = phoneNumber.substr(0, 4) + "-" + phoneNumber.substr(4);
+          } else if (phoneNumber.length == 9) {
+            res =
+              phoneNumber.substr(0, 3) +
+              "-" +
+              phoneNumber.substr(3, 3) +
+              "-" +
+              phoneNumber.substr(6);
+          } else if (phoneNumber.length == 10) {
+            res =
+              phoneNumber.substr(0, 3) +
+              "-" +
+              phoneNumber.substr(3, 3) +
+              "-" +
+              phoneNumber.substr(6);
+          } else if (phoneNumber.length > 10) {
+            res =
+              phoneNumber.substr(0, 3) +
+              "-" +
+              phoneNumber.substr(3, 4) +
+              "-" +
+              phoneNumber.substr(7);
+          }
+        }
+      }
+
+      return res;
+    },
+
     async checkMatchNumber(keyword) {
       const result = await api.keyword(keyword);
 

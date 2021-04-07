@@ -18,21 +18,17 @@
           </v-file-input>
           <v-row align="center" class="mx-0">
             <v-col>
+              <v-radio-group v-model="newList.state" row>
+                <v-radio label="분실" value="분실"></v-radio>
+                <v-radio label="보호" value="보호"></v-radio>
+              </v-radio-group>
+            </v-col>
+            <v-col>
               <v-select
                 :items="filters.options.sidoOption"
                 v-model="newList.area"
                 label="지역"
               ></v-select>
-            </v-col>
-            <v-col>
-              <v-radio-group v-model="newList.state" style="fiex-column: row">
-                <v-radio
-                  label="분실"
-                  value="분실"
-                  style="margin-bottom: 0"
-                ></v-radio>
-                <v-radio label="보호" value="보호"></v-radio>
-              </v-radio-group>
             </v-col>
           </v-row>
           <v-row align="center" class="mx-0">
@@ -99,9 +95,11 @@
               <v-text-field
                 v-model="newList.number"
                 label="연락처*"
-                hint=" 특수문자 '-' 포함 연락처를 입력해주세요."
+                hint=" 특수문자 '-' 제외 숫자만 입력해주세요."
                 persistent-hint
                 required
+                maxlength="11"
+                @keyup="getPhoneMask(newList.number)"
               >
               </v-text-field>
             </v-col>
@@ -140,6 +138,72 @@ export default {
   }),
 
   methods: {
+    getPhoneMask(val) {
+      this.newList.number = this.getMask(val);
+      //서버 전송 값에는 '-' 를 제외하고 숫자만 저장
+      this.number = this.newList.number.replace(/[^0-9]/g, "");
+    },
+    getMask(phoneNumber) {
+      if (!phoneNumber) return phoneNumber;
+      phoneNumber = phoneNumber.replace(/[^0-9]/g, "");
+
+      let res = this.newList.number;
+
+      if (phoneNumber.length < 3) {
+        res = phoneNumber;
+      } else {
+        if (phoneNumber.substr(0, 2) == "02") {
+          if (phoneNumber.length <= 5) {
+            res = phoneNumber.substr(0, 2) + "-" + phoneNumber.substr(2, 3);
+            console.log(res);
+          } else if (phoneNumber.length > 5 && phoneNumber.length <= 9) {
+            res =
+              phoneNumber.substr(0, 2) +
+              "-" +
+              phoneNumber.substr(2, 3) +
+              "-" +
+              phoneNumber.substr(5);
+          } else if (phoneNumber.length > 9) {
+            res =
+              phoneNumber.substr(0, 2) +
+              "-" +
+              phoneNumber.substr(2, 4) +
+              "-" +
+              phoneNumber.substr(6);
+          }
+        } else {
+          if (phoneNumber.length < 8) {
+            res = phoneNumber;
+          } else if (phoneNumber.length == 8) {
+            res = phoneNumber.substr(0, 4) + "-" + phoneNumber.substr(4);
+          } else if (phoneNumber.length == 9) {
+            res =
+              phoneNumber.substr(0, 3) +
+              "-" +
+              phoneNumber.substr(3, 3) +
+              "-" +
+              phoneNumber.substr(6);
+          } else if (phoneNumber.length == 10) {
+            res =
+              phoneNumber.substr(0, 3) +
+              "-" +
+              phoneNumber.substr(3, 3) +
+              "-" +
+              phoneNumber.substr(6);
+          } else if (phoneNumber.length > 10) {
+            res =
+              phoneNumber.substr(0, 3) +
+              "-" +
+              phoneNumber.substr(3, 4) +
+              "-" +
+              phoneNumber.substr(7);
+          }
+        }
+      }
+
+      return res;
+    },
+
     async share() {
       const lostandfound = {
         name: this.newList.name,
@@ -153,7 +217,7 @@ export default {
         state: this.newList.state,
       };
 
-      if (this.files.length && this.number !== null) {
+      if (this.files.length !== null) {
         const sidoArr = this.filters.options.sidoOption.filter(
           (o) => o.value == this.newList.area
         );

@@ -1,8 +1,10 @@
  <template>
   <v-container grid-list-xl>
     <MenuItem />
+    <v-row justify="end">
+      <v-btn class="mr-16" outlined @click="write()">글쓰기 </v-btn>
+    </v-row>
     <v-row>
-      <v-btn absolute right outlined @click="write()">글쓰기 </v-btn>
       <v-col
         v-for="(item, i) in list"
         :key="i"

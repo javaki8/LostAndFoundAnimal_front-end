@@ -4,7 +4,7 @@
       <v-card max-width="800" elevation="2" outlined>
         <v-img v-if="list.files" :src="list.files[0].dataUrl">
           <v-chip class="headline ma-5 orange" text-color="white">
-            {{ list.status }} 되었습니다.
+            {{ list.status }} 진행
           </v-chip>
         </v-img>
 
@@ -15,7 +15,7 @@
         <v-divider></v-divider>
         <v-row>
           <v-col>
-            <v-card-title class="text--secondary">성별: </v-card-title>
+            <v-card-title class="text--secondary">성 별: </v-card-title>
           </v-col>
           <v-col>
             <v-card-title>{{ list.gender }}</v-card-title>
@@ -24,7 +24,7 @@
         <v-divider></v-divider>
         <v-row>
           <v-col>
-            <v-card-title class="text--secondary">색깔: </v-card-title>
+            <v-card-title class="text--secondary">털 색: </v-card-title>
           </v-col>
           <v-col>
             <v-card-title>{{ list.color }} </v-card-title>
@@ -33,7 +33,7 @@
         <v-divider></v-divider>
         <v-row>
           <v-col>
-            <v-card-title class="text--secondary">이름: </v-card-title>
+            <v-card-title class="text--secondary">이 름: </v-card-title>
           </v-col>
           <v-col>
             <v-card-title>{{ list.name }} </v-card-title>
@@ -51,7 +51,7 @@
         <v-divider></v-divider>
         <v-row>
           <v-col>
-            <v-card-title class="text--secondary">날짜: </v-card-title>
+            <v-card-title class="text--secondary">날 짜: </v-card-title>
           </v-col>
           <v-col>
             <v-card-title>{{ list.date }} </v-card-title>
@@ -60,7 +60,7 @@
         <v-divider></v-divider>
         <v-row>
           <v-col>
-            <v-card-title class="text--secondary">지역: </v-card-title>
+            <v-card-title class="text--secondary">지 역: </v-card-title>
           </v-col>
           <v-col>
             <v-card-title>{{ list.area }} </v-card-title>
@@ -69,7 +69,7 @@
         <v-divider></v-divider>
         <v-row>
           <v-col>
-            <v-card-title class="text--secondary">특징: </v-card-title>
+            <v-card-title class="text--secondary">특 징: </v-card-title>
           </v-col>
           <v-col>
             <v-card-title>{{ list.content }} </v-card-title>

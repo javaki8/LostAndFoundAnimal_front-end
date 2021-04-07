@@ -16,7 +16,7 @@
             <v-col>
               <v-chip class="ma-2" color="orange" text-color="white">
                 <v-icon> mdi-paw </v-icon>
-                성별
+                성 별
               </v-chip>
             </v-col>
             <v-col>
@@ -28,7 +28,7 @@
             <v-col>
               <v-chip class="ma-2" color="orange" text-color="white">
                 <v-icon> mdi-paw </v-icon>
-                색깔
+                털 색
               </v-chip>
             </v-col>
             <v-col>
@@ -40,7 +40,7 @@
             <v-col>
               <v-chip class="ma-2" color="orange" text-color="white">
                 <v-icon> mdi-paw </v-icon>
-                이름
+                이 름
               </v-chip>
             </v-col>
             <v-col>
@@ -64,7 +64,7 @@
             <v-col>
               <v-chip class="ma-2" color="orange" text-color="white">
                 <v-icon> mdi-paw </v-icon>
-                날짜
+                날 짜
               </v-chip>
             </v-col>
             <v-col>
@@ -76,7 +76,7 @@
             <v-col>
               <v-chip class="ma-2" color="orange" text-color="white">
                 <v-icon> mdi-paw </v-icon>
-                지역
+                지 역
               </v-chip>
             </v-col>
             <v-col>
@@ -88,7 +88,7 @@
             <v-col>
               <v-chip class="ma-2" color="orange" text-color="white">
                 <v-icon> mdi-paw </v-icon>
-                특징
+                특 징
               </v-chip>
             </v-col>
             <v-col>
@@ -98,7 +98,7 @@
         </v-card>
         <v-btn class="ma-2" outlined color="indigo" @click="animal">목록</v-btn>
 
-        <v-dialog v-model="dialog" max-width="650" style="overflow-y: 0">
+        <v-dialog v-model="dialog" max-width="650">
           <template v-slot:activator="{ on, attrs }">
             <v-btn outlined color="indigo" v-bind="attrs" v-on="on">
               전단지</v-btn
@@ -123,25 +123,6 @@
               <v-col>
                 <v-card-title>
                   <v-chip color="orange" label text-color="white">
-                    축 종
-                  </v-chip>
-                  {{ list.type }}
-                </v-card-title>
-              </v-col>
-
-              <v-col>
-                <v-card-title>
-                  <v-chip color="orange" label text-color="white">
-                    날 짜
-                  </v-chip>
-                  {{ list.date }}
-                </v-card-title>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <v-card-title>
-                  <v-chip color="orange" label text-color="white">
                     지 역
                   </v-chip>
                   {{ list.area }}
@@ -150,18 +131,38 @@
               <v-col>
                 <v-card-title>
                   <v-chip color="orange" label text-color="white">
-                    색 깔
+                    축 종
+                  </v-chip>
+                  {{ list.type }}
+                </v-card-title>
+              </v-col>
+              <v-col>
+                <v-card-title>
+                  {{ list.date }}
+                </v-card-title>
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col>
+                <v-card-title>
+                  <v-chip color="orange" label text-color="white">
+                    성 별
+                  </v-chip>
+                  {{ list.gender }}
+                </v-card-title>
+              </v-col>
+              <v-col>
+                <v-card-title>
+                  <v-chip color="orange" label text-color="white">
+                    털 색
                   </v-chip>
                   {{ list.color }}</v-card-title
                 >
               </v-col>
+              <v-col />
             </v-row>
-            <v-col>
-              <v-card-title>
-                <v-chip color="orange" label text-color="white"> 성 별 </v-chip>
-                {{ list.gender }}
-              </v-card-title>
-            </v-col>
+
             <v-row>
               <v-col>
                 <v-card-title>
