@@ -2,7 +2,7 @@
   <v-container grid-list-xl>
     <v-toolbar flat height="15px">
       <template v-slot:extension>
-        <v-tabs align-with-title>
+        <v-tabs align-with-title v-model="selectedTab">
           <v-tab v-for="(menu, i) in menus" :key="i" @click="navigateTo(menu)">
             {{ menu.text }}
           </v-tab>
@@ -16,6 +16,7 @@
 export default {
   data() {
     return {
+      selectedTab: 1,
       menus: [
         { text: "분실/보호동물", path: "/LostAndFoundAnimal" },
         { text: "반려동물 등록대행업체", path: "/RecordAgency" },
@@ -23,7 +24,15 @@ export default {
       ],
     };
   },
+  mounted() {
+    // console.log(this.$store.state.profile);
 
+    this.menus.forEach((menu, i) => {
+      if (this.$route.path === menu.path) {
+        this.selectedTab = i;
+      }
+    });
+  },
   methods: {
     navigateTo(menu) {
       if (this.$route.path != menu.path) {

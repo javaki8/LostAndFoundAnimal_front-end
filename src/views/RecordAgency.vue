@@ -30,7 +30,13 @@
             ></v-select>
           </v-col>
           <v-col>
-            <v-btn class="ma-2" @click="filterData" v-model="filterData">
+            <v-btn
+              class="ma-2"
+              depressed
+              text
+              @click="filterData"
+              v-model="filterData"
+            >
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
           </v-col>

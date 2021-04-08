@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center">
+  <v-row justify="center" class="ma-10">
     <v-col cols="12" sm="10" md="7" lg="6">
       <v-card max-width="800" elevation="5" outlined>
         <v-img
@@ -12,8 +12,13 @@
             {{ list.status }} 중
           </v-chip>
         </v-img>
-
-        <v-card-title align="center">수정 페이지입니다.</v-card-title>
+        <v-row justify="end" class="ma-3">
+          <v-chip class="ma-2" color="success" label text-color="white">
+            <v-icon right> mdi-account-outline </v-icon>
+            <v-col />
+            <h2>{{ list.name }}</h2>
+          </v-chip>
+        </v-row>
 
         <v-row>
           <v-col>
@@ -30,15 +35,6 @@
           </v-col>
           <v-col>
             <v-card-title>{{ list.color }}</v-card-title>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col>
-            <v-card-title class="text--secondary">이 름: </v-card-title>
-          </v-col>
-          <v-col>
-            <v-card-title>{{ list.name }}</v-card-title>
           </v-col>
         </v-row>
 

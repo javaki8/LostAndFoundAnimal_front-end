@@ -1,13 +1,11 @@
 <template>
   <v-app>
-    <div class="header">
-      <img src="./assets/bg_cropped.jpg" alt="" />
+    <div width="100%" height="250" flat>
+      <v-img src="./assets/bg_cropped.jpg" />
+      <v-btn icon color="#f2f2f2" absolute right top
+        ><v-icon>mdi-cog-outline</v-icon></v-btn
+      >
     </div>
-
-    <!-- <v-spacer></v-spacer> -->
-    <!-- <span class="mr-2">관리자</span>
-        <v-icon>mdi-open-in-new</v-icon> -->
-
     <v-main>
       <v-row justify="center">
         <v-btn
@@ -17,33 +15,15 @@
           @click="navigateTo(item)"
           width="20%"
           height="70px"
+          text
         >
           <h2 v-text="item.text"></h2>
         </v-btn>
       </v-row>
-
       <router-view></router-view>
     </v-main>
   </v-app>
 </template>
-
-<style lang="scss">
-.header {
-  overflow: hidden;
-  width: 100%;
-  height: auto;
-
-  img {
-    width: 100%;
-    vertical-align: top;
-  }
-}
-
-.row {
-  margin: 0 !important;
-}
-</style>
-
 <script>
 export default {
   name: "App",
@@ -59,7 +39,7 @@ export default {
         path: "/LostAndFoundAnimal",
       },
       { text: "입양후기", icon: "mdi-forum", path: "/ReviewMain" },
-      { text: "관리자", icon: "mdi-format-list-checks", path: "/manager" },
+      { text: "동물병원", path: "hospital" },
     ],
   }),
 

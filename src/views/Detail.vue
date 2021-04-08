@@ -1,17 +1,19 @@
 <template>
   <v-container fluid>
-    <v-row justify="center">
+    <v-row justify="center" class="ma-10">
       <v-col cols="6">
         <v-card>
-          <v-img
-            :alt="list.name"
-            v-if="list.files"
-            :src="list.files[0].dataUrl"
-          >
-            <v-chip class="headline ma-5 orange" text-color="white">
-              {{ list.state }}
-            </v-chip></v-img
-          >
+          <v-carousel cycle hide-delimiter-background>
+            <v-carousel-item
+              v-for="(slide, i) in files"
+              :key="i"
+              :src="slide.dataUrl"
+            >
+              <v-chip class="headline ma-5 orange" text-color="white">
+                {{ list.state }}
+              </v-chip>
+            </v-carousel-item>
+          </v-carousel>
           <v-row>
             <v-col>
               <v-chip class="ma-2" color="orange" text-color="white">
@@ -96,16 +98,19 @@
             </v-col>
           </v-row>
         </v-card>
-        <v-btn class="ma-2" outlined color="indigo" @click="animal">목록</v-btn>
+        <v-col />
+        <v-btn class="ma-2" outlined color="primary" @click="animal"
+          >목록</v-btn
+        >
 
         <v-dialog v-model="dialog" max-width="650">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn outlined color="indigo" v-bind="attrs" v-on="on">
+            <v-btn outlined color="primary" v-bind="attrs" v-on="on">
               전단지</v-btn
             >
           </template>
 
-          <v-card>
+          <v-card max-width="630">
             <v-img
               max-height="400"
               :alt="list.name"
@@ -196,8 +201,8 @@ export default {
   name: "Detail",
   data: () => ({
     list: [],
-    htmlUrl: "",
     dialog: false,
+    files: [],
   }),
   mounted() {
     this.getDetails();
@@ -210,6 +215,8 @@ export default {
 
       if (result.status == 200) {
         this.list = result.data;
+        this.files = result.data.files;
+        console.log(this.files);
       }
     },
     animal() {

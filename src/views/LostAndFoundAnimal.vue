@@ -1,8 +1,10 @@
  <template>
-  <v-container grid-list-xl>
+  <v-container>
     <MenuItem />
     <v-row justify="end">
-      <v-btn class="mr-16" outlined @click="write()">글쓰기 </v-btn>
+      <v-btn class="mr-16" color="primary" outlined @click="write()"
+        >글쓰기
+      </v-btn>
     </v-row>
     <v-row>
       <v-col
@@ -13,7 +15,12 @@
         cols="12"
         sm="4"
       >
-        <v-card class="my-12" max-width="350" @click="details(item.id)">
+        <v-card
+          class="mx-auto my-12"
+          max-width="450"
+          min-height="500"
+          @click="details(item.id)"
+        >
           <v-img
             height="320"
             :alt="list.name"
@@ -25,7 +32,8 @@
             </v-col>
             <v-col>
               <v-card-subtitle>
-                <v-icon left> mdi-alarm-check </v-icon>{{ item.date }}
+                <v-icon left color="primary"> mdi-alarm-check </v-icon
+                >{{ item.date }}
               </v-card-subtitle>
             </v-col>
           </v-row>
@@ -41,7 +49,7 @@
                   <v-card flat> 성별: {{ item.gender }} </v-card>
                 </v-col>
               </v-row>
-              <v-row>
+              <v-row align="center" class="mx-0">
                 <v-col>
                   <v-card flat> 지역: {{ item.area }} </v-card>
                 </v-col>
@@ -85,7 +93,7 @@ export default {
     async getLostAndFounds() {
       let page = 0;
       const result = await api.list(page);
-
+      console.log(result);
       if (result.status == 200) {
         this.list = result.data.content;
         this.totalPages = result.data.totalPages;
@@ -97,6 +105,10 @@ export default {
       const result = await api.list(page);
       if (result.status == 200) {
         this.list = result.data.content;
+      }
+      const btnList = document.querySelectorAll(".v-pagination button");
+      for (let btn of btnList) {
+        btn.blur();
       }
     },
 

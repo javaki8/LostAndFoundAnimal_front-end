@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center">
+  <v-row justify="center" class="ma-10">
     <v-col cols="12" sm="10" md="7" lg="6">
       <v-card max-width="800" elevation="2" outlined>
         <v-img v-if="list.files" :src="list.files[0].dataUrl">

@@ -1,10 +1,10 @@
 <template>
   <v-container grid-list-xl>
     <MenuItem />
-    <v-row justify="center">
+    <v-row justify="center" class="ma-10">
       <v-col cols="12" sm="5">
         <v-row>
-          <v-chip class="ma-5" label outlined> 연락처 </v-chip>
+          <v-chip class="ma-5" color="primary" label outlined> 연락처 </v-chip>
           <v-text-field
             v-model="keyword"
             label="특수문자 '-' 제외"
@@ -53,7 +53,7 @@ export default {
     MenuItem,
   },
   data: () => ({
-    keyword: null,
+    keyword: "",
     dialog: false,
     files: [],
   }),
@@ -62,6 +62,7 @@ export default {
     getPhoneMask(val) {
       let res = this.getMask(val);
       this.keyword = res;
+
       res = this.keyword.replace(/[^0-9]/g, "");
     },
     getMask(phoneNumber) {

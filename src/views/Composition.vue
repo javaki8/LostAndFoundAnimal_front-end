@@ -225,7 +225,7 @@ export default {
         lostandfound.area = sidoArr[0].text;
 
         const result = await api.post(lostandfound);
-
+        console.log(result.data);
         if (result.status == 200) {
           const list = result.data;
           list.files = [];
