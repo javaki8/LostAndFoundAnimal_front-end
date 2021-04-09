@@ -16,7 +16,7 @@
 export default {
   data() {
     return {
-      selectedTab: 1,
+      selectedTab: 0,
       menus: [
         { text: "분실/보호동물", path: "/LostAndFoundAnimal" },
         { text: "반려동물 등록대행업체", path: "/RecordAgency" },
