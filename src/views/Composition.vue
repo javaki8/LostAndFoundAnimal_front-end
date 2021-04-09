@@ -11,9 +11,11 @@
             v-model="files"
             multiple
             chips
-            small-chips
             truncate-length="15"
             label="사진을 등록해주세요."
+            prepend-icon="mdi-camera"
+            counter
+            :rules="[(files) => !!files || '필수 입력사항입니다.']"
           >
           </v-file-input>
           <v-row align="center" class="mx-0">
@@ -28,6 +30,7 @@
                 :items="filters.options.sidoOption"
                 v-model="newList.area"
                 label="지역"
+                :rules="[(area) => !!area || '필수 입력사항입니다.']"
               ></v-select>
             </v-col>
           </v-row>
@@ -99,6 +102,7 @@
                 persistent-hint
                 required
                 maxlength="11"
+                :rules="[(number) => !!number || '필수 입력사항입니다.']"
                 @keyup="getPhoneMask(newList.number)"
               >
               </v-text-field>
@@ -127,7 +131,6 @@ import filters from "../assets/js/RecordAgencyFilter";
 export default {
   data: () => ({
     filters,
-    dialog: false,
     newList: {
       date: new Date().toISOString().substr(0, 10),
       //menu2 -> 캘린더
@@ -136,18 +139,20 @@ export default {
     },
     files: [],
   }),
-
+  watch: {
+    name() {
+      this.errorMessages = "";
+    },
+  },
   methods: {
     getPhoneMask(val) {
       this.newList.number = this.getMask(val);
-      //서버 전송 값에는 '-' 를 제외하고 숫자만 저장
-      this.number = this.newList.number.replace(/[^0-9]/g, "");
     },
     getMask(phoneNumber) {
       if (!phoneNumber) return phoneNumber;
       phoneNumber = phoneNumber.replace(/[^0-9]/g, "");
 
-      let res = this.newList.number;
+      let res = this.number;
 
       if (phoneNumber.length < 3) {
         res = phoneNumber;
@@ -217,15 +222,14 @@ export default {
         state: this.newList.state,
       };
 
-      if (this.files.length !== null) {
+      if (this.files.length && this.newList.number && this.newList.area) {
+        const result = await api.post(lostandfound);
+        console.log(result.data);
         const sidoArr = this.filters.options.sidoOption.filter(
           (o) => o.value == this.newList.area
         );
-
         lostandfound.area = sidoArr[0].text;
 
-        const result = await api.post(lostandfound);
-        console.log(result.data);
         if (result.status == 200) {
           const list = result.data;
           list.files = [];
@@ -243,10 +247,11 @@ export default {
               });
             }
           }
+
           this.$router.push("/Page");
         }
       } else {
-        alert("필수 입력 사항입니다.");
+        alert("사진, 전화번호, 지역은 필수 입력사항입니다.");
       }
     },
     animalList() {
