@@ -62,8 +62,6 @@ export default {
     getPhoneMask(val) {
       let res = this.getMask(val);
       this.keyword = res;
-
-      res = this.keyword.replace(/[^0-9]/g, "");
     },
     getMask(phoneNumber) {
       if (!phoneNumber) return phoneNumber;

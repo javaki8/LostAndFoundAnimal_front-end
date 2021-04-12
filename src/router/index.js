@@ -62,6 +62,11 @@ const routes = [
     name: 'InquiryPage',
     component: () => import('../views/InquiryPage.vue')
   },
+  {
+    path: '/Pdf',
+    name: 'Pdf',
+    component: () => import('../views/Pdf.vue')
+  }
 ]
 
 const router = new VueRouter({

@@ -223,12 +223,13 @@ export default {
       };
 
       if (this.files.length && this.newList.number && this.newList.area) {
-        const result = await api.post(lostandfound);
-        console.log(result.data);
         const sidoArr = this.filters.options.sidoOption.filter(
           (o) => o.value == this.newList.area
         );
+
         lostandfound.area = sidoArr[0].text;
+
+        const result = await api.post(lostandfound);
 
         if (result.status == 200) {
           const list = result.data;
