@@ -2,8 +2,8 @@
   <v-container fluid>
     <v-row justify="center" class="ma-10">
       <v-col cols="6">
-        <div ref="pdfarea">
-          <v-card max-width="620" justify="center">
+        <div ref="pdfarea" align="center" class="black">
+          <v-card max-width="630" justify="center">
             <h1 class="bgred" align="center">{{ list.type }}를 찾습니다.</h1>
             <v-img
               max-height="550"
@@ -72,7 +72,7 @@
                 </v-card-title>
               </v-col>
             </v-row>
-            <v-divider></v-divider>
+            <div class="solid" />
             <v-col class="bgwhite">
               <v-card-title>
                 <v-chip style="background-color: orange; color: white" label>
@@ -81,6 +81,7 @@
                 {{ list.number }}
               </v-card-title>
             </v-col>
+            <div class="solid" />
           </v-card>
         </div>
         <v-btn class="ma-2" outlined color="primary" @click="animal"
@@ -151,6 +152,12 @@ export default {
 }
 .bgwhite {
   background-color: white;
+}
+.solid {
+  border-top: 2px solid rgb(151, 148, 148);
+}
+.black {
+  border-style: solid black;
 }
 </style>
 
