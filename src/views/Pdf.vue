@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row justify="center" class="ma-10">
       <v-col cols="6">
-        <div ref="pdfarea" align="center" class="black">
+        <div ref="pdfarea" align="center">
           <v-card max-width="630" justify="center">
             <h1 class="bgred" align="center">{{ list.type }}를 찾습니다.</h1>
             <v-img
@@ -155,9 +155,6 @@ export default {
 }
 .solid {
   border-top: 2px solid rgb(151, 148, 148);
-}
-.black {
-  border-style: solid black;
 }
 </style>
 
