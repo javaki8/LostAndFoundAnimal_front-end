@@ -3,7 +3,7 @@
     <v-row justify="center" class="ma-10">
       <v-col cols="6">
         <div ref="pdfarea" align="center">
-          <v-card max-width="630" justify="center">
+          <v-card max-width="610" justify="center">
             <h1 class="bgred" align="center">{{ list.type }}를 찾습니다.</h1>
             <v-img
               max-height="550"
