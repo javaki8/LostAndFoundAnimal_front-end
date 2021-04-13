@@ -123,7 +123,7 @@ export default {
     exportToPDF() {
       //window.scrollTo(0, 0);
       html2pdf(this.$refs.pdfarea, {
-        margin: 2,
+        margin: 1,
         filename: "mongyang.pdf",
         image: { type: "jpg", quality: 0.95 },
         //	allowTaint 옵션추가
