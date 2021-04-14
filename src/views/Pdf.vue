@@ -6,7 +6,7 @@
           <v-card max-width="610" justify="center">
             <h1 class="bgred" align="center">{{ list.type }}를 찾습니다.</h1>
             <v-img
-              max-height="550"
+              max-height="500"
               :alt="list.name"
               v-if="list.files"
               :src="list.files[0].dataUrl"
@@ -15,7 +15,7 @@
             <h3 class="bgred" align="center">
               여러분의 제보가 큰 힘이 됩니다.
             </h3>
-            <v-row class="bgwhite">
+            <v-row>
               <v-col>
                 <v-card-title>
                   <v-chip style="background-color: orange; color: white" label>
@@ -42,7 +42,7 @@
               </v-col>
             </v-row>
 
-            <v-row class="bgwhite">
+            <v-row>
               <v-col>
                 <v-card-title>
                   <v-chip style="background-color: orange; color: white" label>
@@ -59,10 +59,9 @@
                   {{ list.color }}</v-card-title
                 >
               </v-col>
-              <v-col />
             </v-row>
 
-            <v-row class="bgwhite">
+            <v-row>
               <v-col>
                 <v-card-title>
                   <v-chip style="background-color: orange; color: white" label>
@@ -72,8 +71,8 @@
                 </v-card-title>
               </v-col>
             </v-row>
-            <div class="solid" />
-            <v-col class="bgwhite">
+
+            <v-col>
               <v-card-title>
                 <v-chip style="background-color: orange; color: white" label>
                   TEL )
@@ -81,14 +80,16 @@
                 {{ list.number }}
               </v-card-title>
             </v-col>
-            <div class="solid" />
           </v-card>
         </div>
-        <v-btn class="ma-2" outlined color="primary" @click="animal"
-          >이전</v-btn
-        >
-        <v-btn class="ma-2" outlined color="primary" @click="exportToPDF"
-          >PDF다운로드</v-btn
+        <v-col />
+        <v-row justify="center">
+          <v-btn class="ma-2" outlined color="primary" @click="animal"
+            >이전</v-btn
+          >
+          <v-btn class="ma-2" outlined color="primary" @click="exportToPDF"
+            >PDF다운로드</v-btn
+          ></v-row
         >
       </v-col>
     </v-row>
@@ -130,14 +131,16 @@ export default {
         html2canvas: {
           useCORS: true,
           scrollY: 0,
-          scale: 1,
+          scrollX: 0,
+          scale: 2,
           dpi: 300,
           letterRendering: true,
           allowTaint: false, //useCORS를 true로 설정 시 반드시 allowTaint를 false처리 해주어야함
         },
         jsPDF: {
           orientation: "portrait",
-          unit: "mm",
+
+          unit: "in",
           format: "a4",
           compressPDF: true,
         },
@@ -149,12 +152,6 @@ export default {
 <style>
 .bgred {
   background-color: red;
-}
-.bgwhite {
-  background-color: white;
-}
-.solid {
-  border-top: 2px solid rgb(151, 148, 148);
 }
 </style>
 
