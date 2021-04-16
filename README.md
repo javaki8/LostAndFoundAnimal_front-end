@@ -1,24 +1,12 @@
-# animal
+* * *
+# <멍냥멍냥> 팀 프로젝트
+* * *
 
-## Project setup
-```
-npm install
-```
+### 주요 기능
+1. 분실/보호 동물 글쓰기 
+2. 사용자가 작성글 -> 관리자가 승인한 내역만 게시판 목록에 출력
+3. 멀티파일 등록 및 슬라이드 기능
+4. 전단지 PDF 저장
+5. 반려동물 등록 대행업체 API 조회
+6. 글 승인 조회 및 수정 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
