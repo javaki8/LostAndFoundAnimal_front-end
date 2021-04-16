@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row justify="center" class="ma-10">
       <v-col cols="6">
-        <div ref="pdfarea" align="center">
+        <div ref="pdfarea" style="center">
           <v-card max-width="610" justify="center">
             <h1 class="bgred" align="center">{{ list.type }}를 찾습니다.</h1>
             <v-img
@@ -83,7 +83,7 @@
           </v-card>
         </div>
         <v-col />
-        <v-row justify="center">
+        <v-row>
           <v-btn class="ma-2" outlined color="primary" @click="animal"
             >이전</v-btn
           >
@@ -131,7 +131,6 @@ export default {
         html2canvas: {
           useCORS: true,
           scrollY: 0,
-          scrollX: 0,
           scale: 2,
           dpi: 300,
           letterRendering: true,
@@ -139,7 +138,6 @@ export default {
         },
         jsPDF: {
           orientation: "portrait",
-
           unit: "in",
           format: "a4",
           compressPDF: true,
